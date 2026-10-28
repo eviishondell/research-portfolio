@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | {{ .Site.Title }}</title>
+    <style>
+        :root {
+            --bg-color: #f3f1ea;
+            --card-bg: #e9e5dc;
+            --text-main: #2d2a29;
+            --text-muted: #6e6765;
+            --accent: #80796c;
+            --border-color: #dcd6cc;
+            --pill-bg: #ded8ce;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 80px 24px;
+            line-height: 1.75;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .nav-brand { font-weight: 600; color: var(--text-main); text-decoration: none; }
+        .nav-links { display: flex; gap: 10px; }
+        .nav-pill {
+            background-color: var(--pill-bg);
+            padding: 6px 16px;
+            border-radius: 20px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .nav-pill:hover { background-color: #d2ccc2; }
+        
+        section {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(45, 42, 41, 0.03);
+        }
+        h1, h2 { font-weight: 600; color: var(--text-main); margin-top: 0; }
+        
+        /* Project Card Styling with Hero Image Area */
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(45, 42, 41, 0.03);
+        }
+        .project-hero-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: var(--pill-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .project-content {
+            padding: 24px;
+        }
+        .project-title a { color: var(--text-main); font-size: 1.25rem; font-weight: 600; text-decoration: none; }
+        .project-title a:hover { text-decoration: underline; }
+        .project-desc { color: var(--text-muted); font-size: 0.95rem; margin-top: 8px; margin-bottom: 16px; }
+        
+        .read-more-btn {
+            display: inline-block;
+            background-color: var(--pill-bg);
+            color: var(--text-main);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+        .read-more-btn:hover {
+            background-color: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-brand">Evolone Layne</a>
+        <div class="nav-links">
+            <a href="/" class="nav-pill">Home</a>
+            <a href="/project/" class="nav-pill">Projects</a>
+            <a href="/cv/" class="nav-pill">CV</a>
+            <a href="mailto:evolone@uw.edu" class="nav-pill">Contact</a>
+        </div>
+    </nav>
+
+    <section>
+        <h1>Projects</h1>
+        <p>Explore my research field deployments, human-robot interaction systems, and accessible technology work.</p>
+    </section>
+
+    <!-- Loop through your project files (like PROVAIL) -->
+    {{ range .Pages }}
+    <div class="project-card">
+        <div class="project-hero-image">
+            <img src="{{ .RelPermalink }}golf2.png" alt="PROVAIL Golf Deployment" style="width: 100%; height: 220px; object-fit: cover; object-position: center 20%; display: block; border-bottom: 1px solid var(--border-color);">
+        </div>
+        <div class="project-content">
+            <div class="project-title">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </div>
+            <div class="project-desc">
+                {{ .Description | default "Exploring assistive robotics, in-situ user research, and mobile manipulation platforms." }}
+            </div>
+            <a href="{{ .RelPermalink }}" class="read-more-btn">Read Full Overview →</a>
+        </div>
+    </div>
+    {{ end }}
+</body>
+</html>

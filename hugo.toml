@@ -1,0 +1,18 @@
+baseURL = '/'
+locale = 'en'
+title = 'Evolone Layne | Robotics PhD Student'
+
+[params]
+  name = "Evolone Layne"
+  role = "Robotics PhD Student"
+  organization = "University of Washington"
+  bio = "I study physically assistive robots and accessibility..."
+  email = "evolone@uw.edu"
+
+[social]
+  github = "eviishondell"
+  scholar = "Qr2faHcAAAAJ"
+  linkedin = "evolonelayne"
+
+[markup.goldmark.renderer]
+  unsafe = true

@@ -1,0 +1,6 @@
+# /static/videos/*.mp4
+# /static/videos/*.MOV
+/public/
+/public/
+# /content/projects/provail/*.MOV
+/content/projects/provail/*.mp4

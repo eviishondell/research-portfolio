@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolone Layne</title>
+    <style>
+        :root {
+            --bg-color: #f3f1ea;
+            --card-bg: #e9e5dc;
+            --text-main: #2d2a29;
+            --text-muted: #6e6765;
+            --accent: #80796c;
+            --border-color: #dcd6cc;
+            --pill-bg: #ded8ce;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 80px 24px;
+            line-height: 1.75;
+        }
+
+        /* Top Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-brand {
+            font-weight: 600;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-brand:hover {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-pill {
+            background-color: var(--pill-bg);
+            padding: 6px 16px;
+            border-radius: 20px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-pill:hover {
+            background-color: #d2ccc2;
+            border-color: var(--accent);
+        }
+
+        /* Profile Header Section with Avatar Side-by-Side */
+        .profile-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 36px;
+            margin-bottom: 40px;
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(45, 42, 41, 0.03);
+        }
+
+        .avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            flex-shrink: 0;
+        }
+
+        .profile-info h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin: 0 0 6px 0;
+        }
+
+        .role {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .action-btn {
+            background-color: var(--pill-bg);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-main);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+
+        /* Content Sections inside Cards */
+        section {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(45, 42, 41, 0.03);
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-main);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 24px;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        .pub-link {
+            color: var(--text-main); /* Changed from var(--accent) */
+            text-decoration: none;
+        }
+        .pub-link:hover {
+            text-decoration: underline;
+        }
+
+        .item-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .pub-authors {
+            font-size: 0.95rem;
+            color: var(--text-main); /* Changed from var(--text-muted) */
+        }
+
+        .pub-venue {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid var(--border-color);
+            margin: 40px 0;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 650px) {
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .profile-actions {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav>
+        <a href="/" class="nav-brand">Evolone Layne</a>
+        <div class="nav-links">
+            <a href="#publications" class="nav-pill">Publications</a>
+            <a href="/projects/" class="nav-pill">Projects</a>
+            <a href="/cv/" class="nav-pill">CV</a>
+            <a href="mailto:evolone@uw.edu" class="nav-pill">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Profile Header Section (Avatar + Name side by side) -->
+    <div class="profile-header">
+        <img src="/avatar.png" alt="Evolone Layne" class="avatar" onerror="this.src='https://via.placeholder.com/140?text=Evolone'">
+        <div class="profile-info">
+            <h1>Evolone Layne</h1>
+            <div class="role">
+                Ph.D. Student in Computer Science & Engineering<br>
+                University of Washington
+            </div>
+            <div class="profile-actions">
+                <a href="https://scholar.google.com/citations?user=Qr2faHcAAAAJ&hl=en&oi=ao" target="_blank" class="action-btn">Google Scholar</a>
+                <a href="https://github.com/eviishondell" target="_blank" class="action-btn">GitHub</a>
+                <a href="https://linkedin.com/in/evolonelayne" target="_blank" class="action-btn">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bio Section -->
+    <section>
+        <p>
+            I am a Ph.D. student in Computer Science & Engineering (Robotics) at the University of Washington, where I study human-robot interaction with a core focus on accessibility. I am in the <a href="https://hcrlab.cs.washington.edu" target="_blank" class="pub-link">human-centered robotics lab</a> advised by <a href="https://www.mayacakmak.io/home" target="_blank" class="pub-link">Maya Cakmak</a>. My research is dedicated to building physically assistive systems that empower individuals. Currently, my work explores assisted play options for adults with cerebral palsy using mobile manipulator platforms.
+        </p>
+        <p>
+            I am currently an R&D intern at MIT Lincoln Laboratory in Group 103: Tactical Autonomy. Previously, I completed three software engineering internships at Apple (Watch Complications, Health Sensing Experience, Watch Frameworks), and gained research experience at NASA Ames Research Center working on situational awareness for off-nominal events.
+        </p>
+    </section>
+
+    <!-- Education Section -->
+    <section>
+        <h2>Education</h2>
+        <ul>
+            <li>
+                <div class="item-title">University of Washington</div>
+                <div class="item-subtitle">Ph.D. in Computer Science & Engineering (Robotics) • 2025 – Present</div>
+            </li>
+            <li>
+                <div class="item-title">Carnegie Mellon University</div>
+                <div class="item-subtitle">Master of Human-Computer Interaction (MHCI) • 2024 – 2025</div>
+            </li>
+            <li>
+                <div class="item-title">Howard University</div>
+                <div class="item-subtitle">B.S. in Computer Science • 2020 – 2023</div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+        <h2>Publications & Articles</h2>
+        <ul>
+            <li>
+                <div class="pub-authors">Atharva S. Kashyap, <strong>Evolone Layne</strong>, Mavis Murdock</div>
+                <div class="item-title">
+                    <a href="https://dl.acm.org/doi/epdf/10.1145/3821444" target="_blank" class="pub-link">Listen First, Code Later</a>
+                </div>
+                <div class="pub-venue">XRDS: Crossroads, The ACM Magazine for Students.</div>
+            </li>
+            <li>
+                <div class="pub-authors">Basia Radka, <strong>Evolone Layne</strong>, Maya Cakmak</div>
+                <div class="item-title">
+                    <a href="https://ieeexplore.ieee.org/abstract/document/11217783" target="_blank" class="pub-link">Attitudes towards humanoid robots for in-home assistance</a>
+                </div>
+                <div class="pub-venue">IEEE International Conference on Robot and Human Interactive Communication (RO-MAN).</div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Research & Projects -->
+    <section>
+        <h2>Current Research & Projects</h2>
+        <ul>
+            <li>
+                <div class="item-title">Human-Machine Teaming & Tactical Autonomy (MIT Lincoln Laboratory)</div>
+                <div class="item-subtitle">Developing an open-world human-machine teaming testbed for pilots in training. This includes a replay visualizer for after-action explanation powered by LiteLLM. The chat assistant integrates context across radio, chat replay, and spatial view widgets, with scenarios generated by Synthex.</div>
+            </li>
+            <li>
+                <div class="item-title">Humanoid Robots for In-Home Assistance</div>
+                <div class="item-subtitle">Investigating privacy attitudes and user perceptions through Prolific user studies to understand requirements for deploying humanoid robots in home environments. (Work under review)</div>
+            </li>
+            <li>
+                <div class="item-title">Assisted Play for Adults with Cerebral Palsy</div>
+                <div class="item-subtitle">Investigating the Hello Robot Stretch RE3 mobile manipulator platform. Comparing functional versus physical tasks revealed higher error tolerance in play, shifting our focus toward activity-centered design and contextual inquiries. (Work under review)</div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Experience & Industry Highlights -->
+    <!-- <section>
+        <h2>Industry & Engineering Experience</h2>
+        <ul>
+            <li>
+                <div class="item-title">R&D Intern • MIT Lincoln Laboratory (Group 103: Tactical Autonomy)</div>
+                <div class="item-subtitle">Designed and implemented a replay visualizer for after-action explanation powered by LiteLLM, featuring an integrated chat assistant with context across radio, chat replay, and spatial view widgets, with scenarios generated by Synthex.</div>
+            </li>
+            <li>
+                <div class="item-title">Software Engineering Intern • Apple Inc. (Watch Complications)</div>
+                <div class="item-subtitle">Designed and implemented a watch face based on the Siri face architecture to dynamically provide context-relevant widget tiles for users, utilizing Objective-C with MVVM architecture and Swift data sources.</div>
+            </li>
+            <li>
+                <div class="item-title">Software Engineering Intern • Apple Inc. (Health Sensing Experience)</div>
+                <div class="item-subtitle">Designed and implemented cycle deviation alerts, along with PMDD tracking using Swift and SwiftUI. Focused on mitigating doctor-patient tension by presenting balanced, non-alarming health insights.</div>
+            </li>
+            <li>
+                <div class="item-title">Software Engineering Intern • Apple Inc. (Watch Frameworks)</div>
+                <div class="item-subtitle">Partnered with the Human Interface team to design an accessible watch experience for color-blind users, developing SwiftUI iterations and drafting an API proposal.</div>
+            </li>
+            <li>
+                <div class="item-title">Intern • NASA Ames Research Center (Earth-Independent Operations)</div>
+                <div class="item-subtitle">Led technical design efforts to develop problem-solving processes for Mars-bound crew members, addressing communication delays and developing Swift-based prototypes using Anthropic API integration.</div>
+            </li>
+        </ul>
+    </section> -->
+
+    <!-- Features & Press Section -->
+    <!-- <section>
+        <h2>Features & Press</h2>
+        <ul>
+            <li>
+                <div class="item-title">
+                    <a href="https://www.glamour.com/story/hbcu-college-woman-of-the-year-evolone-layne" target="_blank" class="pub-link">Glamour Magazine</a>
+                </div>
+                <div class="item-subtitle">Featured as one of College Women of the Year, taking over STEM and building technology for communities.</div>
+            </li>
+            <li>
+                <div class="item-title">
+                    <a href="https://www.youtube.com/watch?v=3Ro9NvQiYzM" target="_blank" class="pub-link">Grow with Google</a>
+                </div>
+                <div class="item-subtitle">Profiled regarding mentorship, technical growth, and career inspiration.</div>
+            </li>
+            <li>
+                <div class="item-title">
+                    <a href="https://thehilltoponline.com/2022/11/16/howard-student-named-glamours-college-women-of-the-year/" target="_blank" class="pub-link">The Hilltop</a>
+                </div>
+                <div class="item-subtitle">Covered as a Howard University student named Glamour's College Woman of the Year.</div>
+            </li>
+        </ul>
+    </section> -->
+
+    <hr>
+
+    <!-- Footer Contact -->
+    <div style="font-size: 0.95rem; color: var(--text-muted); text-align: center;">
+        Get in touch via email at <a href="mailto:evolone@uw.edu">evolone@uw.edu</a>.
+    </div>
+
+</body>
+</html>
